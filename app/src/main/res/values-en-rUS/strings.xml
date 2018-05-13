@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Shopping List</string>
     <string name="action_settings">Settings</string>
+    <string name="empty_list">You haven\'t ordered any product yet</string>
 </resources>

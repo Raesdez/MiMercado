@@ -3,4 +3,5 @@
     <string name="app_name">Mi Mercado</string>
     <string name="action_settings">Configuración</string>
     <string name="empty_list">No has ordenado ningún producto</string>
+    <string name="title_activity_product_list">Lista de productos</string>
 </resources>

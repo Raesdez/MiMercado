@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Mi Mercado</string>
     <string name="action_settings">Configuración</string>
+    <string name="empty_list">No has ordenado ningún producto</string>
 </resources>

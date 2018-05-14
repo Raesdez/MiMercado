@@ -3,4 +3,9 @@
     <string name="action_settings">Settings</string>
     <string name="empty_list">No has ordenado ningun producto</string>
     <string name="title_activity_product_list">ProductList</string>
+    <string name="title_item_text">Product</string>
+    <string name="card2_category">Category</string>
+    <string name="card2_maker">Maker</string>
+    <string name="card2_weight">Weight</string>
+    <string name="card2_price">Price</string>
 </resources>

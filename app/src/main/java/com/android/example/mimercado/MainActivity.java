@@ -5,12 +5,18 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+
+    ArrayList<Product> products=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +32,35 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this,ProductList.class));
             }
         });
+
+        //-------
+        //RECYCLERVIEW
+        RecyclerView rv= (RecyclerView) findViewById(R.id.recycler_view_items_list);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+
+        //FILL LIST
+        fillItems();
+
+        //ADAPTER
+        ProductAdapter adapter=new ProductAdapter(this,products);
+        rv.setAdapter(adapter);
     }
 
+    private void fillItems() {
+        products.clear();
+
+        Product p=new Product();
+        p.setName("Queso");
+        p.setPrice(200);
+        products.add(p);
+
+        p=new Product();
+        p.setName("Jamón");
+        p.setPrice(500);
+        products.add(p);
+
+
+    }
 
 
     @Override

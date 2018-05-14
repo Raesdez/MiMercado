@@ -1,3 +1,5 @@
+package com.android.example.mimercado;
+
 import java.util.Date;
 
 public class Product {

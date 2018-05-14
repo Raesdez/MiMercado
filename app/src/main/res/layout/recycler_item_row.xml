@@ -8,7 +8,7 @@
     <android.support.v7.widget.CardView
         android:id="@+id/cardview"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_margin="4dp"
         app:cardBackgroundColor="@color/cardview_light_background"
@@ -26,13 +26,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                />
+                android:padding="5dp"/>
 
             <CheckBox
                 android:id="@+id/checkBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/ivImage" />
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true" />
 
             <TextView
                 android:id="@+id/tvTitle"
@@ -50,7 +51,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvTitle"
 
-                android:padding="@dimen/text_padding"
+                android:paddingRight="@dimen/text_horizontal_padding"
+                android:paddingLeft="@dimen/text_horizontal_padding"
+
+                android:paddingTop="5dp"
+
                 android:text="@string/card2_category" />
 
             <TextView
@@ -61,7 +66,11 @@
                 android:layout_toEndOf="@id/pCategory"
 
                 android:gravity="center"
-                android:padding="@dimen/text_padding"
+                android:paddingRight="@dimen/text_horizontal_padding"
+                android:paddingLeft="@dimen/text_horizontal_padding"
+
+                android:paddingTop="5dp"
+
                 android:text="Dairy" />
 
             <TextView
@@ -70,7 +79,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/pCategory"
 
-                android:padding="@dimen/text_padding"
+                android:paddingRight="@dimen/text_horizontal_padding"
+                android:paddingLeft="@dimen/text_horizontal_padding"
+
+                android:paddingTop="5dp"
+
                 android:text="@string/card2_maker" />
 
             <TextView
@@ -81,7 +94,11 @@
                 android:layout_toEndOf="@id/pMaker"
 
                 android:gravity="center"
-                android:padding="@dimen/text_padding"
+                android:paddingRight="@dimen/text_horizontal_padding"
+                android:paddingLeft="@dimen/text_horizontal_padding"
+
+                android:paddingTop="5dp"
+
                 android:text="Appple" />
 
             <TextView
@@ -90,7 +107,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvMaker"
 
-                android:padding="@dimen/text_padding"
+                android:paddingRight="@dimen/text_horizontal_padding"
+                android:paddingLeft="@dimen/text_horizontal_padding"
+
+                android:paddingTop="5dp"
+
                 android:text="@string/card2_weight" />
 
             <TextView
@@ -101,7 +122,11 @@
                 android:layout_toEndOf="@id/pMaker"
 
                 android:gravity="center"
-                android:padding="@dimen/text_padding"
+                android:paddingRight="@dimen/text_horizontal_padding"
+                android:paddingLeft="@dimen/text_horizontal_padding"
+
+                android:paddingTop="5dp"
+
                 android:text="5KG" />
 
             <TextView
@@ -110,7 +135,12 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvWeight"
 
-                android:padding="@dimen/text_padding"
+                android:paddingRight="@dimen/text_horizontal_padding"
+                android:paddingLeft="@dimen/text_horizontal_padding"
+
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+
                 android:text="@string/card2_price" />
 
             <TextView
@@ -121,7 +151,12 @@
                 android:layout_toEndOf="@id/pPrice"
 
                 android:gravity="center"
-                android:padding="@dimen/text_padding"
+                android:paddingRight="@dimen/text_horizontal_padding"
+                android:paddingLeft="@dimen/text_horizontal_padding"
+
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+
                 android:text="xxx.xx $" />
 
         </RelativeLayout>

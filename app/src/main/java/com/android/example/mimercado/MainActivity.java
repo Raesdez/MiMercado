@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -41,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
         //FILL LIST
         fillItems();
 
+        //CALCULATE SUBTOTAL
+        long total = subTotal();
+        TextView subTotalText = (TextView)  findViewById(R.id.subTotal_quantity);
+        subTotalText.setText(String.valueOf(total));
+
         //ADAPTER
         ProductAdapter adapter=new ProductAdapter(this,products);
         rv.setAdapter(adapter);
@@ -61,8 +67,43 @@ public class MainActivity extends AppCompatActivity {
         p.setName("Jamón");
         p.setPrice(500);
         products.add(p);
+        p=new Product();
+
+        p.setName("Jamón");
+        p.setPrice(500);
+        products.add(p);
+
+        p=new Product();
+        p.setName("Jamón");
+        p.setPrice(500);
+        products.add(p);
+
+        p=new Product();
+        p.setName("Jamón");
+        p.setPrice(500);
+        products.add(p);
+
+        p=new Product();
+        p.setName("Jamón");
+        p.setPrice(500);
+        products.add(p);
+
+        p=new Product();
+        p.setName("Jamón");
+        p.setPrice(500);
+        products.add(p);
 
 
+    }
+    private long subTotal(){
+
+        long total = 0;
+
+        for (Product product : products){
+            total = total + product.getPrice();
+        }
+
+        return total;
     }
 
 

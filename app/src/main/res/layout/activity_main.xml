@@ -12,12 +12,59 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view_items_list"
-            android:layout_width="match_parent"
-            android:layout_height="506dp"
+            android:layout_width="383dp"
+            android:layout_height="444dp"
             android:layout_marginTop="56dp"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/subTotal_title"
+            android:layout_width="82dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="18dp"
+            android:text="@string/total_product_list_text"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_view_items_list" />
+
+        <TextView
+            android:id="@+id/subTotal_quantity"
+            android:layout_width="87dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="18dp"
+            android:text="500.000,86"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/subTotal_title"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_view_items_list" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="45dp"
+            android:layout_height="18dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="Bs.S"
+            app:layout_constraintBaseline_toBaselineOf="@+id/subTotal_quantity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.071"
+            app:layout_constraintStart_toEndOf="@+id/subTotal_quantity" />
     </android.support.constraint.ConstraintLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:elevation="5dp"
+        android:onClick="addButton"
+        app:backgroundTint="@android:color/holo_orange_light"
+        app:srcCompat="@drawable/ic_shopping_cart" />
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -32,15 +79,5 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="@android:color/holo_orange_light"
-        app:srcCompat="@android:drawable/ic_input_add"
-        android:onClick="addButton"/>
 
 </android.support.design.widget.CoordinatorLayout>

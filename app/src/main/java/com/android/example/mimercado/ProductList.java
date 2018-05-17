@@ -31,10 +31,6 @@ public class ProductList extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mGridLayoutManager);
 
         mProductList = new ArrayList<>();
-        mProduct = new Product("Queso", "Lacteos", "Ajá", 1.5, 550, R.drawable.carnation);
-        mProductList.add(mProduct);
-        mProduct = new Product("Arroz", "Granos", "Ajá", 1.5, 550, R.drawable.daisy);
-        mProductList.add(mProduct);
 
 
         ProductAdapter myAdapter = new ProductAdapter(ProductList.this, mProductList);

@@ -8,4 +8,5 @@
     <string name="card2_maker">Maker</string>
     <string name="card2_weight">Weight</string>
     <string name="card2_price">Price</string>
+    <string name="product_test_name">Milk</string>
 </resources>

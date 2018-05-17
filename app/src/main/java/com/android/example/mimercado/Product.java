@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class Product {
 
-    private String name;
-    private String category;
+    private int name;
+    private int category;
     private String maker;
     private double weight;
     private double price;
@@ -15,7 +15,7 @@ public class Product {
 
     }
 
-    public Product(String name, String category, String maker, double weight, double price, int image) {
+    public Product(int name, int category, String maker, double weight, double price, int image) {
         this.name = name;
         this.category = category;
         this.maker = maker;
@@ -24,19 +24,19 @@ public class Product {
         this.image = image;
     }
 
-    public String getName() {
+    public int getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(int name) {
         this.name = name;
     }
 
-    public String getCategory() {
+    public int getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(int category) {
         this.category = category;
     }
 

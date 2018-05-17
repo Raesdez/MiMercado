@@ -9,4 +9,5 @@
     <string name="card2_maker">Fabricante</string>
     <string name="card2_weight">Peso</string>
     <string name="card2_price">Precio</string>
+    <string name="product_test_name">Leche</string>
 </resources>

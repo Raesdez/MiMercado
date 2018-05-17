@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
         rv.setAdapter(adapter);
     }
 
+    /**
+     * This method fill the list that is show in the view
+     */
     private void fillItems() {
         products.clear();
 
@@ -83,5 +86,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void addButton(View view) {
+        Intent intent = new Intent(this, ProductList.class);
+        startActivity(intent);
+
     }
 }

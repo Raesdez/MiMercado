@@ -12,18 +12,19 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view_items_list"
-            android:layout_width="383dp"
-            android:layout_height="444dp"
+            android:layout_width="0dp"
+            android:layout_height="454dp"
             android:layout_marginTop="56dp"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="0dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/subTotal_title"
             android:layout_width="82dp"
             android:layout_height="29dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="12dp"
             android:text="@string/total_product_list_text"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,9 +33,9 @@
         <TextView
             android:id="@+id/subTotal_quantity"
             android:layout_width="87dp"
-            android:layout_height="30dp"
+            android:layout_height="29dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="12dp"
             android:text="500.000,86"
             android:textColor="@android:color/black"
             android:textSize="16sp"

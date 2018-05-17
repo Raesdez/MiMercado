@@ -95,6 +95,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    /**
+     *
+     * This method calculates subtotal
+     */
     private long subTotal(){
 
         long total = 0;

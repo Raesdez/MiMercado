@@ -1,3 +1,5 @@
+package com.android.example.mimercado;
+
 import java.util.Date;
 
 public class Product {
@@ -9,9 +11,9 @@ public class Product {
     private long price;
     private String image;
 
-    public Product (){
+  //  public Product (){
 
-    }
+   // }
 
     public Product(String name, String category, String maker, long weight, long price, String image) {
         this.name = name;

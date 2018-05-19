@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+//El view Holder es algo asi como la celda, es quien referencia a esa celda, que en este caso sería el items model
 public class ProductsViewHolder extends RecyclerView.ViewHolder  {
     TextView titleTxt,productNameText,priceTxt;
 

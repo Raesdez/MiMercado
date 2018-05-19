@@ -48,4 +48,6 @@ public class ProductList extends AppCompatActivity {
         });
     }
 
+    //Falta colocar el método que devuelva a la vista bb
+
 }

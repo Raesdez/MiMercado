@@ -16,6 +16,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String EXTRA_MESSAGE = "com.android.mimercado.extra.MESSAGE";
+    public static final int TEXT_REQUEST = 1;
 
     ArrayList<Product> products=new ArrayList<>();
 
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -153,6 +156,14 @@ public class MainActivity extends AppCompatActivity {
         return total;
     }
 
+    /**
+     *
+     * This method call the list of products you can select for result
+     * @param view
+     */
     public void buyProduct(View view) {
+        Intent intent = new Intent(this, Product.class);
+        startActivityForResult(intent, TEXT_REQUEST);
+
     }
 }

@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+//Los adaptadores son como el puente entre los datos y la UI
+//Imagina que el adapterEs el contenedor que se le asigna al reciclre view y el View Holder es la celda
 public class ProductAdapterMain extends RecyclerView.Adapter<ProductsViewHolder> {
 
     Context c;

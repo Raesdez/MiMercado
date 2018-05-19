@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.android.mimercado.extra.MESSAGE";
     public static final int TEXT_REQUEST = 1;
 
-    ArrayList<Product> products=new ArrayList<>();
+    public static ArrayList<Product> products=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
         products.add(p);
         p=new Product();
 
+        subTotal();
+
     }
 
 
@@ -152,7 +155,8 @@ public class MainActivity extends AppCompatActivity {
         for (Product product : products){
             total = total + product.getPrice();
         }
-
+        TextView subTotalText = (TextView)  findViewById(R.id.total_text);
+        subTotalText.setText(String.valueOf(total));
         return total;
     }
 
@@ -165,5 +169,22 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Product.class);
         startActivityForResult(intent, TEXT_REQUEST);
 
+    }
+
+    private static void deleteProduct(String name){
+        for (Product product : products){
+            System.out.print(product.getName());
+            if (getString(product.getName()) == name){
+                products.remove(product);
+            }
+        }
+
+    }
+
+    public static void deleteItem(String name){
+
+        System.out.print(name);
+
+        deleteProduct(name);
     }
 }

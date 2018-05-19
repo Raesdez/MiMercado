@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
     public void buyProduct(View view) {
         Intent intent = new Intent(this, Product.class);
         Bundle listOfProducts = new Bundle();
-        intent.putParcelableArrayListExtra(EXTRA_MESSAGE, (ArrayList<? extends Parcelable>) products);
+        //intent.putParcelableArrayListExtra(EXTRA_MESSAGE, (ArrayList<? extends Parcelable>) products);
         startActivityForResult(intent, TEXT_REQUEST);
 
     }
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == TEXT_REQUEST) {
             if (resultCode == RESULT_OK) {
-                products=data.getParcelableArrayListExtra("Lista");
+
             }
         }
     }

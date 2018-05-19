@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -25,7 +27,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "This is my Toast message!", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(MainActivity.this,ProductList.class));
+
+                Intent intent = new Intent(MainActivity.this,ProductList.class);
+
+                Bundle bundle = new Bundle();
+
+                bundle.putSerializable(getString(R.string.product_name_flour),new Product(R.string.product_name_flour, R.string.product_category_imported, "PAN", 1, 1.69, R.drawable.flour));
+
+                intent.putExtras(bundle);
+
+                    startActivity(intent);
             }
         });
     }

@@ -35,7 +35,14 @@ public class ProductList extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         Intent intent = getIntent(); //Get the intent that started the activity
-        mSelectedProductList=intent.getParcelableArrayListExtra("Lista");
+
+        Bundle bundle = intent.getExtras();
+
+
+        mSelectedProductList.add((Product)bundle.getSerializable(getString(R.string.product_name_flour)));
+
+        //TODO this was when it was parcelable
+        //mSelectedProductList=intent.getParcelableArrayListExtra("Lista");
 
 
         mRecyclerView = findViewById(R.id.recyclerview);        //Recycler view object
@@ -45,8 +52,8 @@ public class ProductList extends AppCompatActivity {
 
         //TODO Call the adapter to select the products that were already selected, if any
         mProductList = generateProductList(); //Generate the product list
-        mSelectedProductList.add((Product)mProductList.get(0)); //TODO delete this, it's just a test
-        mSelectedProductList.add((Product)mProductList.get(2));
+        //mSelectedProductList.add((Product)mProductList.get(0)); //TODO delete this, it's just a test
+        //mSelectedProductList.add((Product)mProductList.get(2));
 
 
         ProductAdapter myAdapter = new ProductAdapter(ProductList.this, mProductList,mSelectedProductList);
@@ -73,11 +80,30 @@ public class ProductList extends AppCompatActivity {
         mSelectedProductList = (ArrayList<Product>)((ProductAdapter)mRecyclerView.getAdapter()).getmSelectedProductsList(); //Obtains the selected product list
 
         Intent replyIntent = new Intent(); //We must create a new intent
-        replyIntent.putParcelableArrayListExtra("List",mSelectedProductList);
+
+        replyIntent.putExtras(generateReturnBundle());
+
+       //TODO for Parcelable
+       // replyIntent.putParcelableArrayListExtra("List",mSelectedProductList);
 
         setResult(RESULT_OK,replyIntent);
         finish();
     }
+
+    public Bundle generateReturnBundle()
+    {
+        Bundle bundle = new Bundle();
+
+        for(Product product: mSelectedProductList) //Iterates all of the selected products and adds them
+        {
+            bundle.putSerializable(getString(product.getName()),product);
+        }
+
+        return bundle;
+    }
+
+
+
 
     /**
      * Generate the 20-product-list that will be used on the app

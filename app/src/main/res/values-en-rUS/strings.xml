@@ -34,7 +34,7 @@
     <string name="product_name_bellpepper">Bellpepper</string>
     <string name="product_soda_can">Soda can</string>
     <string name="product_name_meat">Meat</string>
-    <string name="alert_maximun_products">You can order up to 10 products</string>
+    <string name="alert_maximun_products">You can only order up to 10 products</string>
     <string name="test_delete_later">Replace with your own action</string>
     <string name="delete_later">delete later</string>
 </resources>

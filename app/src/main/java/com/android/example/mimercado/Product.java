@@ -3,8 +3,10 @@ package com.android.example.mimercado;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
 
-public class Product implements Parcelable {
+
+public class Product implements Serializable {
 
     private int name;
     private int category;
@@ -14,16 +16,7 @@ public class Product implements Parcelable {
     private int image;
 
 
-    //Todo Comment this later
-    private Product(Parcel in) {
 
-        name = in.readInt();
-        category = in.readInt();
-        image = in.readInt();
-        weight = in.readDouble();
-        price = in.readDouble();
-        maker = in.readString();
-    }
 
     public Product(int name, int category, String maker, double weight, double price, int image) {
         this.name = name;
@@ -83,37 +76,5 @@ public class Product implements Parcelable {
     }
 
 
-//####################################################################################
-
-    //TODO Comment this code later
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(name);
-        dest.writeInt(category);
-        dest.writeInt(image);
-        dest.writeString(maker);
-        dest.writeDouble(weight);
-        dest.writeDouble(price);
-    }
-
-    public static final Parcelable.Creator<Product> CREATOR
-            = new Parcelable.Creator<Product>() {
-        public Product createFromParcel(Parcel in) {
-            return new Product(in);
-        }
-
-        public Product[] newArray(int size) {
-            return new Product[size];
-        }
-    };
-
-    public Product[] newArray(int size) {
-        return new Product[size];
-    }
 }
 

@@ -8,15 +8,16 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductList extends AppCompatActivity {
 
-    RecyclerView mRecyclerView;
-    List mProductList;
-    Product mProduct;
+    RecyclerView mRecyclerView; //The reclycler view that will contain all the generated cards
+    List mProductList; //The product list
+    Product mProduct; //Already selected products
 
 
     @Override
@@ -30,14 +31,16 @@ public class ProductList extends AppCompatActivity {
         GridLayoutManager mGridLayoutManager = new GridLayoutManager(ProductList.this, 2);
         mRecyclerView.setLayoutManager(mGridLayoutManager);
 
-        mProductList = new ArrayList<>();
+
+        //TODO Call the adapter to select the products that were already selected, if any
+        mProductList = getListaProducto(); //Generate the product list
 
 
         ProductAdapter myAdapter = new ProductAdapter(ProductList.this, mProductList);
         mRecyclerView.setAdapter(myAdapter);
 
 
-        //
+        //TODO Replace it with a "select products action"
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,4 +51,62 @@ public class ProductList extends AppCompatActivity {
         });
     }
 
+
+
+    /**
+     * Generate the 20-product-list that will be used on the app
+     * @return the products list
+     */
+    private List<Product> getListaProducto() {
+        List<Product> listaProducto = new ArrayList<>();
+
+        listaProducto.add(new Product(R.string.product_name_flour, R.string.product_category_imported, "PAN", 1, 1.69, R.drawable.flour));
+
+        listaProducto.add(new Product(R.string.product_name_apple, R.string.product_category_local, "ManzanCA", 3, 2.99, R.drawable.apple));
+
+        listaProducto.add(new Product(R.string.product_name_pear, R.string.product_category_local, "PeraCA", 3, 1.99, R.drawable.pear));
+
+        listaProducto.add(new Product(R.string.product_name_milk, R.string.product_category_local, "Mi Vaca", 1, 1.32, R.drawable.milk));
+
+        listaProducto.add(new Product(R.string.product_name_olive, R.string.product_category_imported, "Carbonell", 3, 16.99, R.drawable.olive));
+
+        listaProducto.add(new Product(R.string.product_name_rice, R.string.product_category_local, "Mary", 1, 0.99, R.drawable.rice));
+
+        listaProducto.add(new Product(R.string.product_name_lemons, R.string.product_category_local, "El camión", 5, 2.99, R.drawable.lemon));
+
+        listaProducto.add(new Product(R.string.product_name_watermelon, R.string.product_category_local, "El camión", 5, 4.00, R.drawable.watermelon));
+
+        listaProducto.add(new Product(R.string.product_name_bellpepper, R.string.product_category_local, "El camión", 1, 4.00, R.drawable.bellpepper));
+
+        listaProducto.add(new Product(R.string.product_name_pasta, R.string.product_category_local, "Mary", 1, 0.99, R.drawable.pasta));
+
+        listaProducto.add(new Product(R.string.product_soda_can, R.string.product_category_imported, "Coca Cola", 0.750, 1.67, R.drawable.sodacan));
+
+        listaProducto.add(new Product(R.string.product_name_bacon, R.string.product_category_local, "Plumrose", 5, 7.99, R.drawable.bacon));
+
+        listaProducto.add(new Product(R.string.product_name_cheese, R.string.product_category_local, "Paisa", 1, 6.34, R.drawable.cheese));
+
+        listaProducto.add(new Product(R.string.product_name_meat, R.string.product_category_local, "Rey David", 8, 24.67, R.drawable.meat));
+
+        listaProducto.add(new Product(R.string.product_name_ketchup, R.string.product_category_imported, "Heinz", 1, 3.99, R.drawable.ketchup));
+
+        listaProducto.add(new Product(R.string.product_name_lettuce, R.string.product_category_local, "El Campo", 0.5, 2.99, R.drawable.lettuce));
+
+        listaProducto.add(new Product(R.string.product_name_eggplant, R.string.product_category_local, "El Campo", 3, 7.21, R.drawable.eggplant));
+
+        listaProducto.add(new Product(R.string.product_name_orange_juice, R.string.product_category_local, "Yukeri", 0.255, 0.99, R.drawable.orangejuice));
+
+        listaProducto.add(new Product(R.string.product_name_apple_juice, R.string.product_category_local, "Yukeri", 0.255, 0.99, R.drawable.applejuice));
+
+        listaProducto.add(new Product(R.string.product_name_beer, R.string.product_category_local, "Solera", 1.5, 7.88, R.drawable.beer));
+
+        listaProducto.add(new Product(R.string.product_name_wine, R.string.product_category_imported, "Gato negro", 1.5, 20.55, R.drawable.wine));
+
+        System.out.println(listaProducto.size()); //Shows list size in order to check if it has 20 products
+        return listaProducto;
+    }
+
+
 }
+
+

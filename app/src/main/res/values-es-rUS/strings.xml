@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Mi Mercado</string>
     <string name="action_settings">Configuración</string>
-    <string name="empty_list">No has seleccionado ningún producto</string>
+    <string name="empty_list">No has seleccionado ningún producto todavía</string>
     <string name="title_activity_product_list">Lista de productos</string>
     <string name="title_item_text">Producto</string>
     <string name="card2_category">Categoría</string>
@@ -10,4 +10,28 @@
     <string name="card2_weight">Peso</string>
     <string name="card2_price">Precio</string>
     <string name="product_test_name">Leche</string>
+    <string name="product_category_imported">Importado</string>
+    <string name="product_name_flour">Harina</string>
+    <string name="product_maker_pan">PAN</string>
+    <string name="product_name_apple">Manzanas</string>
+    <string name="product_category_local">Local</string>
+    <string name="product_name_pear">Peras</string>
+    <string name="product_name_milk">Leche</string>
+    <string name="product_name_olive">Aceite de Oliva</string>
+    <string name="product_name_rice">Arroz</string>
+    <string name="product_name_bacon">Tocineta</string>
+    <string name="product_name_pasta">Pasta</string>
+    <string name="product_name_cheese">Queso</string>
+    <string name="product_name_eggplant">Berenjena</string>
+    <string name="product_name_lettuce">Lechuga</string>
+    <string name="product_name_apple_juice">Jugo de Manzana</string>
+    <string name="product_name_ketchup">Ketchup</string>
+    <string name="product_name_orange_juice">Jugo de Naranja</string>
+    <string name="product_name_wine">Vino</string>
+    <string name="product_name_beer">Cerveza</string>
+    <string name="product_name_lemons">Limones</string>
+    <string name="product_name_watermelon">Sandía</string>
+    <string name="product_name_bellpepper">Pimentón</string>
+    <string name="product_soda_can">Lata de Soda</string>
+    <string name="product_name_meat">Carne</string>
 </resources>

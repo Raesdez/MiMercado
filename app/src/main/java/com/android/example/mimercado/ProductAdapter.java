@@ -50,8 +50,8 @@ public class ProductAdapter extends RecyclerView.Adapter {
         holder.mTitle.setText(mProductList.get(position).getName());
         holder.mCategory.setText(mProductList.get(position).getCategory());
         holder.mMaker.setText(mProductList.get(position).getMaker());
-        holder.mWeight.setText(Double.toString(mProductList.get(position).getWeight()));
-        holder.mPrice.setText(Double.toString(mProductList.get(position).getPrice()));
+        holder.mWeight.setText(Double.toString(mProductList.get(position).getWeight())+" Kg");
+        holder.mPrice.setText(Double.toString(mProductList.get(position).getPrice())+" $");
 
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +62,6 @@ public class ProductAdapter extends RecyclerView.Adapter {
                 {
                     holder.mCheck.setChecked(false);
 
-                    //holder.mCardView.setCardBackgroundColor(fetchAccentColor());
                     mSelectedProductsList.remove(mProductList.get(position));
                     System.out.println("Deselected");
                 } else                                                        //It has been selected
@@ -89,12 +88,14 @@ public class ProductAdapter extends RecyclerView.Adapter {
     }
 }
 
+
 class ProductViewHolder extends RecyclerView.ViewHolder {
 
     ImageView mImage;
     TextView mTitle, mCategory, mMaker, mWeight, mPrice;
     CardView mCardView = itemView.findViewById(R.id.cardview);
     CheckBox mCheck;
+
 
     ProductViewHolder(View itemView) {
         super(itemView);

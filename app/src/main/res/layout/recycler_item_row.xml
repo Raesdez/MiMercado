@@ -1,0 +1,164 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="4dp"
+        app:cardBackgroundColor="@color/cardview_light_background"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/ivImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:padding="5dp"/>
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ivImage"
+                android:gravity="center"
+                android:text="Product"
+                android:textSize="18sp"
+                android:textStyle="italic|bold" />
+
+            <TextView
+                android:id="@+id/pCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvTitle"
+
+                android:paddingRight="@dimen/text_horizontal_padding"
+                android:paddingLeft="@dimen/text_horizontal_padding"
+
+                android:paddingTop="5dp"
+
+                android:text="@string/card2_category" />
+
+            <TextView
+                android:id="@+id/tvCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvTitle"
+                android:layout_toEndOf="@id/pCategory"
+
+                android:gravity="center"
+                android:paddingRight="@dimen/text_horizontal_padding"
+                android:paddingLeft="@dimen/text_horizontal_padding"
+
+                android:paddingTop="5dp"
+
+                android:text="Dairy" />
+
+            <TextView
+                android:id="@+id/pMaker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pCategory"
+
+                android:paddingRight="@dimen/text_horizontal_padding"
+                android:paddingLeft="@dimen/text_horizontal_padding"
+
+                android:paddingTop="5dp"
+
+                android:text="@string/card2_maker" />
+
+            <TextView
+                android:id="@+id/tvMaker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pCategory"
+                android:layout_toEndOf="@id/pMaker"
+
+                android:gravity="center"
+                android:paddingRight="@dimen/text_horizontal_padding"
+                android:paddingLeft="@dimen/text_horizontal_padding"
+
+                android:paddingTop="5dp"
+
+                android:text="Appple" />
+
+            <TextView
+                android:id="@+id/pWeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvMaker"
+
+                android:paddingRight="@dimen/text_horizontal_padding"
+                android:paddingLeft="@dimen/text_horizontal_padding"
+
+                android:paddingTop="5dp"
+
+                android:text="@string/card2_weight" />
+
+            <TextView
+                android:id="@+id/tvWeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvMaker"
+                android:layout_toEndOf="@id/pMaker"
+
+                android:gravity="center"
+                android:paddingRight="@dimen/text_horizontal_padding"
+                android:paddingLeft="@dimen/text_horizontal_padding"
+
+                android:paddingTop="5dp"
+
+                android:text="5KG" />
+
+            <TextView
+                android:id="@+id/pPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvWeight"
+
+                android:paddingRight="@dimen/text_horizontal_padding"
+                android:paddingLeft="@dimen/text_horizontal_padding"
+
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+
+                android:text="@string/card2_price" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvWeight"
+                android:layout_toEndOf="@id/pPrice"
+
+                android:gravity="center"
+                android:paddingRight="@dimen/text_horizontal_padding"
+                android:paddingLeft="@dimen/text_horizontal_padding"
+
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+
+                android:text="xxx.xx $" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

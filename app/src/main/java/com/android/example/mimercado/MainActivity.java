@@ -5,111 +5,31 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
-
-import java.util.ArrayList;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
-    ArrayList<Product> products=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "This is my Toast message!", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(MainActivity.this,ProductList.class));
             }
         });
-
-        //-------
-        //RECYCLERVIEW
-        RecyclerView rv= (RecyclerView) findViewById(R.id.recycler_view_items_list);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-
-        //FILL LIST
-        fillItems();
-
-        //CALCULATE SUBTOTAL
-        long total = subTotal();
-        TextView subTotalText = (TextView)  findViewById(R.id.subTotal_quantity);
-        subTotalText.setText(String.valueOf(total));
-
-        //ADAPTER
-        ProductAdapter adapter=new ProductAdapter(this,products);
-        rv.setAdapter(adapter);
     }
 
-    /**
-     * This method fill the list that is show in the view
-     */
-    private void fillItems() {
-        products.clear();
-
-        Product p=new Product();
-        p.setName("Queso");
-        p.setPrice(200);
-        products.add(p);
-
-        p=new Product();
-        p.setName("Jamón");
-        p.setPrice(500);
-        products.add(p);
-        p=new Product();
-
-        p.setName("Jamón");
-        p.setPrice(500);
-        products.add(p);
-
-        p=new Product();
-        p.setName("Jamón");
-        p.setPrice(500);
-        products.add(p);
-
-        p=new Product();
-        p.setName("Jamón");
-        p.setPrice(500);
-        products.add(p);
-
-        p=new Product();
-        p.setName("Jamón");
-        p.setPrice(500);
-        products.add(p);
-
-        p=new Product();
-        p.setName("Jamón");
-        p.setPrice(500);
-        products.add(p);
-
-
-    }
-
-    /**
-     *
-     * This method calculates subtotal
-     */
-    private long subTotal(){
-
-        long total = 0;
-
-        for (Product product : products){
-            total = total + product.getPrice();
-        }
-
-        return total;
-    }
 
 
     @Override
@@ -132,11 +52,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void addButton(View view) {
-        Intent intent = new Intent(this, ProductList.class);
-        startActivity(intent);
-
     }
 }

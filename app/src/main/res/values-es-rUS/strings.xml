@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mi Mercado</string>
+    <string name="action_settings">Configuración</string>
+    <string name="empty_list">No has seleccionado ningún producto</string>
+    <string name="title_activity_product_list">Lista de productos</string>
+    <string name="title_item_text">Producto</string>
+    <string name="card2_category">Categoría</string>
+    <string name="card2_maker">Fabricante</string>
+    <string name="card2_weight">Peso</string>
+    <string name="card2_price">Precio</string>
+    <string name="product_test_name">Leche</string>
+</resources>

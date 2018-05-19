@@ -5,13 +5,19 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+
+    ArrayList<Product> products=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +34,84 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this,ProductList.class));
             }
         });
+
+        //-------
+        //RECYCLERVIEW
+        RecyclerView rv= (RecyclerView) findViewById(R.id.recycler_container);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+
+        //FILL LIST
+        fillItems();
+
+        //CALCULATE SUBTOTAL
+        /*long total = subTotal();
+        TextView subTotalText = (TextView)  findViewById(R.id.subTotal_quantity);
+        subTotalText.setText(String.valueOf(total));*/
+
+        //ADAPTER
+        ProductAdapterMain adapter=new ProductAdapterMain(this,products);
+        rv.setAdapter(adapter);
+    }
+
+    /**
+     * This method fill the list that is show in the view
+     */
+    private void fillItems() {
+        products.clear();
+
+        Product p=new Product();
+        p.setName(R.string.product_test_name);
+        p.setPrice(200);
+        products.add(p);
+
+        p=new Product();
+        p.setName(R.string.product_test_name);
+        p.setPrice(500);
+        products.add(p);
+        p=new Product();
+
+        p=new Product();
+        p.setName(R.string.product_test_name);
+        p.setPrice(500);
+        products.add(p);
+        p=new Product();
+
+        p=new Product();
+        p.setName(R.string.product_test_name);
+        p.setPrice(500);
+        products.add(p);
+        p=new Product();
+
+        p=new Product();
+        p.setName(R.string.product_test_name);
+        p.setPrice(500);
+        products.add(p);
+        p=new Product();
+
+        p=new Product();
+        p.setName(R.string.product_test_name);
+        p.setPrice(500);
+        products.add(p);
+        p=new Product();
+
+        p=new Product();
+        p.setName(R.string.product_test_name);
+        p.setPrice(500);
+        products.add(p);
+        p=new Product();
+
+        p=new Product();
+        p.setName(R.string.product_test_name);
+        p.setPrice(500);
+        products.add(p);
+        p=new Product();
+
+        p=new Product();
+        p.setName(R.string.product_test_name);
+        p.setPrice(500);
+        products.add(p);
+        p=new Product();
+
     }
 
 
@@ -52,5 +136,23 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     *
+     * This method calculates subtotal
+     */
+    private Double subTotal(){
+
+        Double total = 0.0;
+
+        for (Product product : products){
+            total = total + product.getPrice();
+        }
+
+        return total;
+    }
+
+    public void buyProduct(View view) {
     }
 }

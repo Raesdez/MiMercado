@@ -9,4 +9,6 @@
     <string name="card2_weight">Weight</string>
     <string name="card2_price">Price</string>
     <string name="product_test_name">Milk</string>
+    <string name="total_title">Total:</string>
+    <string name="money_unit_title">$</string>
 </resources>

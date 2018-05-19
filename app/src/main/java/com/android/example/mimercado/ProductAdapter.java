@@ -27,11 +27,12 @@ public class ProductAdapter extends RecyclerView.Adapter {
     private List<Product> mProductList;
     private List<Product> mSelectedProductsList;
 
-    ProductAdapter(Context mContext, List mProductListList) {
+    ProductAdapter(Context mContext, List mProductList, List mSelectedProductsList) {
         this.mContext = mContext;
-        this.mProductList = mProductListList;
+        this.mProductList = mProductList;
         this.mSelectedProductsList = new ArrayList<>();
-
+        this.mProductList = mProductList;
+        this.mSelectedProductsList = mSelectedProductsList;
     }
 
     @NonNull
@@ -50,14 +51,16 @@ public class ProductAdapter extends RecyclerView.Adapter {
         holder.mTitle.setText(mProductList.get(position).getName());
         holder.mCategory.setText(mProductList.get(position).getCategory());
         holder.mMaker.setText(mProductList.get(position).getMaker());
-        holder.mWeight.setText(Double.toString(mProductList.get(position).getWeight())+" Kg");
-        holder.mPrice.setText(Double.toString(mProductList.get(position).getPrice())+" $");
+        holder.mWeight.setText(Double.toString(mProductList.get(position).getWeight()) + " Kg");
+        holder.mPrice.setText(Double.toString(mProductList.get(position).getPrice()) + " $");
+
+        //If the selected product list is not null, it selects the product on the card
+        selectDeselectCard(holder, position);
+
 
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 if (mSelectedProductsList.contains(mProductList.get(position)))   //It has been deselected
                 {
                     holder.mCheck.setChecked(false);
@@ -75,8 +78,6 @@ public class ProductAdapter extends RecyclerView.Adapter {
                         Toast.makeText(mContext, "Máximo 10 productos por compra", Toast.LENGTH_LONG).show();
                     }
                 }
-
-
             }
         });
     }
@@ -85,6 +86,30 @@ public class ProductAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return mProductList.size();
+    }
+
+    /**
+     * Getter for the Selected Product List
+     *
+     * @return the Selected Product List
+     */
+    public List<Product> getmSelectedProductsList() {
+        return (mSelectedProductsList);
+    }
+
+    /**
+     * At creation of each card, it selects those that were already selected before calling the product list view
+     *
+     * @param holder
+     * @param position
+     */
+    private void selectDeselectCard(ProductViewHolder holder, int position) {
+
+        if (mSelectedProductsList.contains(mProductList.get(position)))
+            holder.mCheck.setChecked(true);
+        else
+            holder.mCheck.setChecked(false);
+
     }
 }
 

@@ -16,8 +16,8 @@ import java.util.List;
 public class ProductList extends AppCompatActivity {
 
     RecyclerView mRecyclerView; //The reclycler view that will contain all the generated cards
-    List mProductList; //The product list
-    Product mProduct; //Already selected products
+    List mProductList,mSelectedProductList=new ArrayList<Product>(); //The product list
+    //Already selected products
 
 
     @Override
@@ -33,10 +33,12 @@ public class ProductList extends AppCompatActivity {
 
 
         //TODO Call the adapter to select the products that were already selected, if any
-        mProductList = getListaProducto(); //Generate the product list
+        mProductList = generateProductList(); //Generate the product list
+        mSelectedProductList.add(mProductList.get(0));
+        mSelectedProductList.add(mProductList.get(2));
 
 
-        ProductAdapter myAdapter = new ProductAdapter(ProductList.this, mProductList);
+        ProductAdapter myAdapter = new ProductAdapter(ProductList.this, mProductList,mSelectedProductList);
         mRecyclerView.setAdapter(myAdapter);
 
 
@@ -57,7 +59,7 @@ public class ProductList extends AppCompatActivity {
      * Generate the 20-product-list that will be used on the app
      * @return the products list
      */
-    private List<Product> getListaProducto() {
+    private List<Product> generateProductList() {
         List<Product> listaProducto = new ArrayList<>();
 
         listaProducto.add(new Product(R.string.product_name_flour, R.string.product_category_imported, "PAN", 1, 1.69, R.drawable.flour));

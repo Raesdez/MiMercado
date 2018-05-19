@@ -14,6 +14,7 @@ import java.util.List;
 
 public class ProductList extends AppCompatActivity {
 
+    public static final String EXTRA_REPLY = "com.android.example.mimercado.extra.REPLY";
     RecyclerView mRecyclerView;
     List mProductList;
     Product mProduct;

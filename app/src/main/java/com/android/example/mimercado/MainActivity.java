@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -19,11 +20,14 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
-    public static final String EXTRA_MESSAGE = "com.android.mimercado.extra.MESSAGE";
+    public static final String EXTRA_MESSAGE = "com.android.example.mimercado.extra.MESSAGE";
+    public static final String EXTRA_REPLY = "com.android.example.mimercado.extra.REPLY";
+
     public static final int TEXT_REQUEST = 1;
 
     public static ArrayList<Product> products=new ArrayList<>();
@@ -132,8 +136,18 @@ public class MainActivity extends AppCompatActivity {
      */
     public void buyProduct(View view) {
         Intent intent = new Intent(this, Product.class);
+        Bundle listOfProducts = new Bundle();
+        intent.putParcelableArrayListExtra(EXTRA_MESSAGE, (ArrayList<? extends Parcelable>) products);
         startActivityForResult(intent, TEXT_REQUEST);
 
+    }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == TEXT_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                products=data.getParcelableArrayListExtra("Lista");
+            }
+        }
     }
 
 }

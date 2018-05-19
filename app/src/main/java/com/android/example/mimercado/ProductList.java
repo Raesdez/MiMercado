@@ -26,6 +26,8 @@ public class ProductList extends AppCompatActivity {
         setContentView(R.layout.activity_product_list);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Enables the back button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         mRecyclerView = findViewById(R.id.recyclerview);
         GridLayoutManager mGridLayoutManager = new GridLayoutManager(ProductList.this, 2);

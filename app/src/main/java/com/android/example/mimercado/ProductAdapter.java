@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -69,23 +70,55 @@ public class ProductAdapter extends RecyclerView.Adapter {
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mSelectedProductsList.contains(mProductList.get(position)))   //It has been deselected
-                {
-                    holder.mCheck.setChecked(false);                             //Uncheck the check box
-                    mSelectedProductsList.remove(mProductList.get(position));
-                    System.out.println("Deleted" + mContext.getString(mProductList.get(position).getName()));
 
-                } else                                                        //It has been selected
-                {
-                    if (mSelectedProductsList.size() != MAX_PRODUCTS) {
-                        holder.mCheck.setChecked(true);                      //Check the check box
-                        mSelectedProductsList.add(mProductList.get(position)); //Add the product to the list of selected
-                        System.out.println("Added" + mContext.getString(mProductList.get(position).getName()));
+                if (mSelectedProductsList.size() == 0) {
+                    holder.mCheck.setChecked(true);                      //Check the check box
+                    mSelectedProductsList.add(mProductList.get(position)); //Add the product to the list of selected
+                    System.out.println("Added" + mContext.getString(mProductList.get(position).getName()));
 
-                    } else {
-                        Snackbar.make(view, R.string.alert_maximun_products, Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
+
+                } else {
+
+
+                    Iterator iterator = mSelectedProductsList.iterator();
+                    Product aux=null;
+                    boolean delete = false;
+
+                    while(iterator.hasNext())
+                    {
+                        Product compare = (Product)iterator.next();
+                        if(mContext.getString(compare.getName()).equals(holder.mTitle.getText()))
+                        {
+                            delete=true;
+                            holder.mCheck.setChecked(false);                             //Uncheck the check box
+                           aux = compare;
+                           break;
+
+                        }
+                        else                                                        //It has been selected
+                        {
+                            if (mSelectedProductsList.size() != MAX_PRODUCTS) {
+                                holder.mCheck.setChecked(true);                      //Check the check box
+                                aux = mProductList.get(position);
+                                //delete = false;
+                               // mSelectedProductsList.add(mProductList.get(position)); //Add the product to the list of selected
+                                System.out.println("Added" + mContext.getString(mProductList.get(position).getName()));
+
+
+                            } else {
+                                Snackbar.make(view, R.string.alert_maximun_products, Snackbar.LENGTH_LONG)
+                                        .setAction("Action", null).show();
+                                break;
+                            }
+                        }
+
                     }
+                    if(delete)
+                    mSelectedProductsList.remove(aux);
+                    else {
+                        mSelectedProductsList.add(aux);
+                    }
+
                 }
             }
         });
@@ -109,10 +142,13 @@ public class ProductAdapter extends RecyclerView.Adapter {
      */
     private void selectDeselectCard(ProductViewHolder holder, int position) {
 
-        if (mSelectedProductsList.contains(mProductList.get(position)))
-            holder.mCheck.setChecked(true);
-        else
-            holder.mCheck.setChecked(false);
+        for(Product product: mSelectedProductsList)
+        {
+
+            if (mContext.getString(product.getName()).equals(holder.mTitle.getText()))
+                holder.mCheck.setChecked(true);
+        }
+
 
     }
 

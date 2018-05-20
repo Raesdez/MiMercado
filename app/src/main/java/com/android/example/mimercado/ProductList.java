@@ -19,10 +19,10 @@ import java.util.List;
 public class ProductList extends AppCompatActivity {
 
     RecyclerView mRecyclerView;                                       //The recycler view that will contain all the generated cards
-    List mProductList;
-    ArrayList<Product>mSelectedProductList= new ArrayList<>(); //The product list and the already selected products
+    ArrayList<Product> mProductList;
+    ArrayList<Product> mSelectedProductList = new ArrayList<>(); //The product list and the already selected products
 
-    public static final String EXTRA_REPLY = "com.twoactivities.gian.twoactivites.extra.REPLY";
+    public static final String EXTRA_REPLY = "com.android.example.mimercado.extra.REPLY";
 
 
     @Override
@@ -34,83 +34,92 @@ public class ProductList extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Enables the back button
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        Intent intent = getIntent(); //Get the intent that started the activity
-
-        Bundle bundle = intent.getExtras();
-
-
-        mSelectedProductList.add((Product)bundle.getSerializable(getString(R.string.product_name_flour)));
-
-        //TODO this was when it was parcelable
-        //mSelectedProductList=intent.getParcelableArrayListExtra("Lista");
-
 
         mRecyclerView = findViewById(R.id.recyclerview);        //Recycler view object
-        GridLayoutManager mGridLayoutManager = new GridLayoutManager(ProductList.this,2); //Creates a manager of two columns
+        GridLayoutManager mGridLayoutManager = new GridLayoutManager(ProductList.this, 2); //Creates a manager of two columns
         mRecyclerView.setLayoutManager(mGridLayoutManager);     //Sets the grid to the recycler
 
 
         //TODO Call the adapter to select the products that were already selected, if any
         mProductList = generateProductList(); //Generate the product list
-        //mSelectedProductList.add((Product)mProductList.get(0)); //TODO delete this, it's just a test
-        //mSelectedProductList.add((Product)mProductList.get(2));
 
+        Intent intent = getIntent(); //Get the intent that started the activity
 
-        ProductAdapter myAdapter = new ProductAdapter(ProductList.this, mProductList,mSelectedProductList);
+        Bundle bundle = intent.getExtras();
+
+        if (bundle != null) {
+            generateOriginProductList(bundle);
+        }
+
+        ProductAdapter myAdapter = new ProductAdapter(ProductList.this, mProductList, mSelectedProductList);
         mRecyclerView.setAdapter(myAdapter);
 
 
         //TODO Replace it with a "select products action"
-        FloatingActionButton fab = findViewById(R.id.fab);
+        /*FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, R.string.test_delete_later, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
     }
 
     /**
      * Method that returns to the Main Activity and sends the product list
+     *
      * @param view
      */
     public void returnReply(View view) {
 
-        mSelectedProductList = (ArrayList<Product>)((ProductAdapter)mRecyclerView.getAdapter()).getmSelectedProductsList(); //Obtains the selected product list
+        mSelectedProductList = (ArrayList<Product>) ((ProductAdapter) mRecyclerView.getAdapter()).getmSelectedProductsList(); //Obtains the selected product list
 
         Intent replyIntent = new Intent(); //We must create a new intent
 
         replyIntent.putExtras(generateReturnBundle());
+        //replyIntent.putExtra(EXTRA_REPLY, "Prueba");
 
-       //TODO for Parcelable
-       // replyIntent.putParcelableArrayListExtra("List",mSelectedProductList);
+        //TODO for Parcelable
+        // replyIntent.putParcelableArrayListExtra("List",mSelectedProductList);
 
-        setResult(RESULT_OK,replyIntent);
+        setResult(RESULT_OK, replyIntent);
         finish();
     }
 
-    public Bundle generateReturnBundle()
-    {
+    public Bundle generateReturnBundle() {
         Bundle bundle = new Bundle();
 
-        for(Product product: mSelectedProductList) //Iterates all of the selected products and adds them
+        mSelectedProductList = (ArrayList<Product>) ((ProductAdapter) mRecyclerView.getAdapter()).getmSelectedProductsList();
+        for (Product product : mSelectedProductList) //Iterates all of the selected products and adds them
         {
-            bundle.putSerializable(getString(product.getName()),product);
+            bundle.putSerializable(getString(product.getName()), product);
         }
 
         return bundle;
     }
 
 
+    public void generateOriginProductList(Bundle bundle) {
+        for (Product product : mProductList) {
+
+            Product adding = (Product) bundle.getSerializable(getString(product.getName()));
+
+            if (adding != null) {
+                mSelectedProductList.add(adding);
+            }
+
+        }
+    }
 
 
     /**
      * Generate the 20-product-list that will be used on the app
+     *
      * @return the products list
      */
-    private List<Product> generateProductList() {
-        List<Product> productList = new ArrayList<>();
+    private ArrayList<Product> generateProductList() {
+        ArrayList<Product> productList = new ArrayList<>();
 
         productList.add(new Product(R.string.product_name_flour, R.string.product_category_imported, "PAN", 1, 1.69, R.drawable.flour));
 
@@ -159,7 +168,4 @@ public class ProductList extends AppCompatActivity {
     }
 
 
-
 }
-
-

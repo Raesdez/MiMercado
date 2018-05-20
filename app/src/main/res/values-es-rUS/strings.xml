@@ -37,4 +37,6 @@
     <string name="alert_maximun_products">Solo puedes ordenar hasta 10 productos</string>
     <string name="test_delete_later">Replace with your own action</string>
     <string name="delete_later">delete later</string>
+    <string name="total_title">Total:</string>
+    <string name="unit">$</string>
 </resources>

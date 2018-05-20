@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -175,4 +176,34 @@ public class ProductList extends AppCompatActivity {
     }
 
 
+    ///-------------Arreglado luego del proyecto
+    @Override
+    public void onBackPressed() {
+        backButtonFixed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                backButtonFixed();
+                return true;
+        }
+        return false;
+    }
+    private void backButtonFixed(){
+        mSelectedProductList = (ArrayList<Product>) ((ProductAdapter) mRecyclerView.getAdapter()).getmSelectedProductsList(); //Obtains the selected product list
+
+        Intent replyIntent = new Intent(); //We must create a new intent
+
+        replyIntent.putExtras(generateReturnBundle());
+        //replyIntent.putExtra(EXTRA_REPLY, "Prueba");
+
+        //TODO for Parcelable
+        // replyIntent.putParcelableArrayListExtra("List",mSelectedProductList);
+
+        setResult(RESULT_OK, replyIntent);
+        finish();
+        super.onBackPressed();
+    }
 }

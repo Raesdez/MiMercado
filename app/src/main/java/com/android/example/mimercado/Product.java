@@ -1,21 +1,24 @@
 package com.android.example.mimercado;
 
-import java.util.Date;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Product {
+import java.io.Serializable;
 
-    private String name;
-    private String category;
+
+public class Product implements Serializable {
+
+    private int name;
+    private int category;
     private String maker;
-    private long weight;
-    private long price;
-    private String image;
+    private double weight;
+    private double price;
+    private int image;
 
-  //  public Product (){
 
-   // }
 
-    public Product(String name, String category, String maker, long weight, long price, String image) {
+
+    public Product(int name, int category, String maker, double weight, double price, int image) {
         this.name = name;
         this.category = category;
         this.maker = maker;
@@ -24,19 +27,19 @@ public class Product {
         this.image = image;
     }
 
-    public String getName() {
+    public int getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(int name) {
         this.name = name;
     }
 
-    public String getCategory() {
+    public int getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(int category) {
         this.category = category;
     }
 
@@ -48,7 +51,7 @@ public class Product {
         this.maker = maker;
     }
 
-    public long getWeight() {
+    public double getWeight() {
         return weight;
     }
 
@@ -56,7 +59,7 @@ public class Product {
         this.weight = weight;
     }
 
-    public long getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -64,11 +67,14 @@ public class Product {
         this.price = price;
     }
 
-    public String getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(int image) {
         this.image = image;
     }
+
+
 }
+

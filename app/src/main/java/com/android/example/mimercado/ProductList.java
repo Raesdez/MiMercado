@@ -1,76 +1,171 @@
 package com.android.example.mimercado;
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.GridView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductList extends AppCompatActivity {
 
-    // array de productos que se llena con getListaProducto
-    public List<Product> listaProducto;
+    RecyclerView mRecyclerView;                                       //The recycler view that will contain all the generated cards
+    ArrayList<Product> mProductList;
+    ArrayList<Product> mSelectedProductList = new ArrayList<>(); //The product list and the already selected products
+
+    public static final String EXTRA_REPLY = "com.android.example.mimercado.extra.REPLY";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
-
-        listaProducto = getListaProducto();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Enables the back button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        LinearLayoutManager layoutManager
-                = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
-        RecyclerView cardlist = (RecyclerView) findViewById(R.id.cardlist);
-        cardlist.setLayoutManager(layoutManager);
-        ProductAdapter adaptadorProductos = new ProductAdapter(this,listaProducto);
-        cardlist.setAdapter(adaptadorProductos);
+        mRecyclerView = findViewById(R.id.recyclerview);        //Recycler view object
+        GridLayoutManager mGridLayoutManager = new GridLayoutManager(ProductList.this, 2); //Creates a manager of two columns
+        mRecyclerView.setLayoutManager(mGridLayoutManager);     //Sets the grid to the recycler
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        //TODO Call the adapter to select the products that were already selected, if any
+        mProductList = generateProductList(); //Generate the product list
+
+        Intent intent = getIntent(); //Get the intent that started the activity
+
+        Bundle bundle = intent.getExtras();
+
+        if (bundle != null) {
+            generateOriginProductList(bundle);
+        }
+
+        ProductAdapter myAdapter = new ProductAdapter(ProductList.this, mProductList, mSelectedProductList);
+        mRecyclerView.setAdapter(myAdapter);
+
+
+        //TODO Replace it with a "select products action"
+        /*FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, R.string.test_delete_later, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
-
+        });*/
     }
 
-//metodo que agruega productos al array listaProducto
-    public List<Product> getListaProducto() {
-        List<Product> listaProducto = new ArrayList<Product>();
-        listaProducto.add(new Product("Harina","Importada","PAN",1,1500,""));
-        listaProducto.add(new Product("Manzanas","Local","ManzanCA",1,2000,""));
-        listaProducto.add(new Product("Peras","Local","PeraCA",1,2500,""));
-        listaProducto.add(new Product("Leche","Local","MIVACA",2,5000,""));
-        listaProducto.add(new Product("Aceite","Importado","MACEITE",1,6500,""));
-        listaProducto.add(new Product("Arroz","Local","MARY",2,5000,""));
-        listaProducto.add(new Product("Lentejas","Local","MARY",1,4500,""));
-        listaProducto.add(new Product("Guisantes","Importado","LOS GUISANTES",2,350,""));
-        listaProducto.add(new Product("Mantequilla","Local","MAVESA",1,3500,""));
-        listaProducto.add(new Product("Margarina","Local","MAVESA",1,2500,""));
-        listaProducto.add(new Product("Pasta","Local","MARY",1,1500,""));
-        listaProducto.add(new Product("Jamon","Local","PLUMROSE",1,2500,""));
-        listaProducto.add(new Product("Tocineta","Local","PLUMROSE",1,1500,""));
-        listaProducto.add(new Product("Queso","Local","Paisa",2,1000,""));
-        listaProducto.add(new Product("Queso Crema","Importado","Andinita",1,3000,""));
-        listaProducto.add(new Product("Tomates","Local","EL CAMPO",2,1000,""));
-        listaProducto.add(new Product("Lechugas","Local","EL CAMPO",1,1300,""));
-        listaProducto.add(new Product("Berenjena","Local","EL CAMPO",1,1600,""));
-        listaProducto.add(new Product("Jugo de Naranja","Local","Yukeri",1,1000,""));
-        listaProducto.add(new Product("Jugo de Manzana","Local","Yukeri",1,1500,""));
-        listaProducto.add(new Product("Jugo de Pera","Local","Yukeri",1,1000,""));
-        return listaProducto;
+    /**
+     * Method that returns to the Main Activity and sends the product list
+     *
+     * @param view
+     */
+    public void returnReply(View view) {
+
+        mSelectedProductList = (ArrayList<Product>) ((ProductAdapter) mRecyclerView.getAdapter()).getmSelectedProductsList(); //Obtains the selected product list
+
+        Intent replyIntent = new Intent(); //We must create a new intent
+
+        replyIntent.putExtras(generateReturnBundle());
+        //replyIntent.putExtra(EXTRA_REPLY, "Prueba");
+
+        //TODO for Parcelable
+        // replyIntent.putParcelableArrayListExtra("List",mSelectedProductList);
+
+        setResult(RESULT_OK, replyIntent);
+        finish();
     }
+
+    public Bundle generateReturnBundle() {
+        Bundle bundle = new Bundle();
+
+        mSelectedProductList = (ArrayList<Product>) ((ProductAdapter) mRecyclerView.getAdapter()).getmSelectedProductsList();
+        for (Product product : mSelectedProductList) //Iterates all of the selected products and adds them
+        {
+            bundle.putSerializable(getString(product.getName()), product);
+        }
+
+        return bundle;
+    }
+
+
+    public void generateOriginProductList(Bundle bundle) {
+        for (Product product : mProductList) {
+
+            Product adding = (Product) bundle.getSerializable(getString(product.getName()));
+
+            if (adding != null) {
+                mSelectedProductList.add(adding);
+            }
+
+        }
+    }
+
+
+    /**
+     * Generate the 20-product-list that will be used on the app
+     *
+     * @return the products list
+     */
+    private ArrayList<Product> generateProductList() {
+        ArrayList<Product> productList = new ArrayList<>();
+
+        productList.add(new Product(R.string.product_name_flour, R.string.product_category_imported, "PAN", 1, 1.69, R.drawable.flour));
+
+        productList.add(new Product(R.string.product_name_apple, R.string.product_category_local, "ManzanCA", 3, 2.99, R.drawable.apple));
+
+        productList.add(new Product(R.string.product_name_pear, R.string.product_category_local, "PeraCA", 3, 1.99, R.drawable.pear));
+
+        productList.add(new Product(R.string.product_name_milk, R.string.product_category_local, "Mi Vaca", 1, 1.32, R.drawable.milk));
+
+        productList.add(new Product(R.string.product_name_olive, R.string.product_category_imported, "Carbonell", 3, 16.99, R.drawable.olive));
+
+        productList.add(new Product(R.string.product_name_rice, R.string.product_category_local, "Mary", 1, 0.99, R.drawable.rice));
+
+        productList.add(new Product(R.string.product_name_lemons, R.string.product_category_local, "El camión", 5, 2.99, R.drawable.lemon));
+
+        productList.add(new Product(R.string.product_name_watermelon, R.string.product_category_local, "El camión", 5, 4.00, R.drawable.watermelon));
+
+        productList.add(new Product(R.string.product_name_bellpepper, R.string.product_category_local, "El camión", 1, 4.00, R.drawable.bellpepper));
+
+        productList.add(new Product(R.string.product_name_pasta, R.string.product_category_local, "Mary", 1, 0.99, R.drawable.pasta));
+
+        productList.add(new Product(R.string.product_soda_can, R.string.product_category_imported, "Coca Cola", 0.750, 1.67, R.drawable.sodacan));
+
+        productList.add(new Product(R.string.product_name_bacon, R.string.product_category_local, "Plumrose", 5, 7.99, R.drawable.bacon));
+
+        productList.add(new Product(R.string.product_name_cheese, R.string.product_category_local, "Paisa", 1, 6.34, R.drawable.cheese));
+
+        productList.add(new Product(R.string.product_name_meat, R.string.product_category_local, "Rey David", 8, 24.67, R.drawable.meat));
+
+        productList.add(new Product(R.string.product_name_ketchup, R.string.product_category_imported, "Heinz", 1, 3.99, R.drawable.ketchup));
+
+        productList.add(new Product(R.string.product_name_lettuce, R.string.product_category_local, "El Campo", 0.5, 2.99, R.drawable.lettuce));
+
+        productList.add(new Product(R.string.product_name_eggplant, R.string.product_category_local, "El Campo", 3, 7.21, R.drawable.eggplant));
+
+        productList.add(new Product(R.string.product_name_orange_juice, R.string.product_category_local, "Yukeri", 0.255, 0.99, R.drawable.orangejuice));
+
+        productList.add(new Product(R.string.product_name_apple_juice, R.string.product_category_local, "Yukeri", 0.255, 0.99, R.drawable.applejuice));
+
+        productList.add(new Product(R.string.product_name_beer, R.string.product_category_local, "Solera", 1.5, 7.88, R.drawable.beer));
+
+        productList.add(new Product(R.string.product_name_wine, R.string.product_category_imported, "Gato negro", 1.5, 20.55, R.drawable.wine));
+
+        System.out.println(productList.size()); //Shows list size in order to check if it has 20 products
+        return productList;
+    }
+
+
 }

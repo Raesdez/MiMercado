@@ -8,45 +8,10 @@
     tools:context=".ProductList"
     tools:showIn="@layout/activity_product_list">
 
-
-    <ScrollView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="8">
-
-                <TextView
-                    android:id="@+id/textGrid"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="GRID LAYOUT"
-                    android:textColor="@color/cardview_dark_background"
-                    android:textSize="34sp" />
-
-            </RelativeLayout>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/cardlist"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:alignmentMode="alignMargins"
-                android:columnCount="2"
-                android:columnOrderPreserved="false"
-                android:padding="14dp"
-                android:rowCount="5">
-
-            </android.support.v7.widget.RecyclerView>
-
-        </LinearLayout>
-    </ScrollView>
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical" />
 
 </android.support.constraint.ConstraintLayout>

@@ -49,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    /**
+     * This method generate bundle with list of products clients want to buy
+     * @return
+     */
     private Bundle generateBundle() {
         Bundle bundle = new Bundle();
 
@@ -61,6 +66,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * This method receive list of products client want to add to a shopping card
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -85,6 +96,9 @@ public class MainActivity extends AppCompatActivity {
         updateListOfProducts();
     }
 
+    /**
+     * This method update list of product activity shows in the recycler view
+     */
     private void updateListOfProducts(){
         //-------
         //RECYCLERVIEW

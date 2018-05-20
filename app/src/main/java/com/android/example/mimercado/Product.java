@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import java.io.Serializable;
 
-
+//This is the class we use to manage products in the app
 public class Product implements Serializable {
 
     private int name;

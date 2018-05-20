@@ -87,6 +87,10 @@ public class ProductList extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * This method generate bundle with list of products clients want to buy
+     * @return
+     */
     public Bundle generateReturnBundle() {
         Bundle bundle = new Bundle();
 
@@ -99,7 +103,10 @@ public class ProductList extends AppCompatActivity {
         return bundle;
     }
 
-
+    /**
+     * This method retrieve objects in the bundle and convert them into an array List
+     * @param bundle
+     */
     public void generateOriginProductList(Bundle bundle) {
         for (Product product : mProductList) {
 

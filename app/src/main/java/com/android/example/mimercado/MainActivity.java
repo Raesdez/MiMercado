@@ -198,5 +198,9 @@ public class MainActivity extends AppCompatActivity {
         return productList;
     }
 
-
+    @Override
+    protected void onResume() {
+      // updateListOfProducts();
+        super.onResume();
+    }
 }
